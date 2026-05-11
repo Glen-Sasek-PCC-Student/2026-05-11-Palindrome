@@ -33,6 +33,7 @@
 
 // ------------- CODE -------------
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
@@ -42,7 +43,31 @@ using namespace std;
 // Main function
 // https://en.cppreference.com/w/cpp/language/main_function.html
 int main(int argc, char* argv[]) {
-  cout << "Hello, World!" << endl;
+  string s;
+  cout << "Enter some text please: ";
+  getline(cin, s);
+  bool palindrome = true;
+  
+  string clean = "";
+  for(char c : s) {
+    if(isblank(c)){
+      // don't add blanks to clean string
+    } else {
+      // convert to lowercase and add;
+      clean.push_back(tolower(c));
+    }
+  }
+
+  for(int i = 0; palindrome && i < clean.size()/2; i++) {
+    palindrome = clean[i] == clean[clean.size()-(i + 1)];
+  }
+
+  if(palindrome) {
+    cout << "Congratulations Its a Palindrome" << endl;
+    cout << "🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉" << endl;
+  } else {
+    cout << "That wasn't a palindrome, sad  🥹" << endl;
+  }
   return 0;
 }
 
